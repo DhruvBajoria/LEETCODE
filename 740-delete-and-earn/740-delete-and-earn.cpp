@@ -2,7 +2,7 @@ class Solution {
 public:
     int deleteAndEarn(vector<int>& nums) {
           
-        int n=10001;
+        int n=20000;
         vector<int>dp(n,0);
           vector<int>house(n,0);
         for(auto x:nums)
