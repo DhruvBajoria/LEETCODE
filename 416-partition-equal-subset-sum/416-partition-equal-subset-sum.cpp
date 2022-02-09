@@ -1,33 +1,49 @@
 class Solution {
 public:
-    bool solve(int i,int t,vector<vector<int>>&dp,vector<int>&nums)
+    bool solve(int n,int k,vector<int>&nums)
     {
-        if(t==0)
-        return true;
-        if(i==0)
-        return nums[0]==t;
-        if(dp[i][t]!=-1)
-        return dp[i][t];
-        bool nonpick=solve(i-1,t,dp,nums);
-        bool pick=false;
-        if(t>=nums[i])
-        pick=solve(i-1,t-nums[i],dp,nums);
+        vector<vector<bool>>dp(n,vector<bool>(k+1,0));
+        for(int i=0;i<n;i++)
+        {
+            dp[i][0]=true;
+            
+        }
+        if(nums[0]<=k){
+             dp[0][nums[0]]=true;
+        }
         
-        return dp[i][t]=pick | nonpick;
+        
+        for(int i=1;i<n;i++)
+        {
+            for(int tgt=1;tgt<=k;tgt++)
+            {
+                bool nonpick=dp[i-1][tgt];
+                bool pick=false;
+                if(tgt>=nums[i])
+                {
+                    pick=dp[i-1][tgt-nums[i]];
+                }
+                dp[i][tgt]=pick | nonpick;
+            }
+        }
+        return dp[n-1][k];
+       
     }
     bool canPartition(vector<int>& nums) {
         int s=0;
         
         int n=nums.size();
+        if(n==1)
+            return false;
         for(auto x:nums)
         {
             s+=x;
         }
-        if(s%2==1)
+        if(s%2)
             return false;
         int t=s/2;
-        vector<vector<int>>dp(n,vector<int>(t+1,-1));
-        return solve(n-1,t,dp,nums);
+       
+        return solve(n,t,nums);
            
     }
 };
