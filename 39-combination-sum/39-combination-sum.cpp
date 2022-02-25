@@ -2,6 +2,9 @@ class Solution {
 public:
     void solve(vector<int>&c,int t,int i,vector<int>&h,vector<vector<int>>&v)
     {
+        
+        
+        
         if(i==c.size())
         {
             if(t==0)
