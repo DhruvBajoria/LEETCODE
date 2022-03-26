@@ -20,8 +20,9 @@ bool iscycle(vector<int> adj[],vector<int> &vis,int id){
         vector<int> vis(n,0);
         
         for(int i=0;i<n;i++){
+            if(!vis[i]){
             if(iscycle(adj,vis,i))
-                return false;
+                return false;}
         }
         return true;
     }
