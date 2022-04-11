@@ -4,7 +4,7 @@ public:
     {
 	//checking corner cases for moving in 4 direction up down left right
         if(i>=0 and i<n and j>=0 and j<m and grid[i][j]==1)
-        {
+        {        
             grid[i][j]=0;
             return 1+ dfs(grid,i+1,j,n,m)+dfs(grid,i-1,j,n,m)+dfs(grid,i,j+1,n,m)+dfs(grid,i,j-1,n,m);
             
