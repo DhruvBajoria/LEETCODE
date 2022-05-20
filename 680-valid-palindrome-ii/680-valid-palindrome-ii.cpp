@@ -1,23 +1,76 @@
 class Solution {
 public:
     bool validPalindrome(string s) {
-  int lo = 0, hi = s.size() - 1;
-        return validPalindrome(s, lo, hi, 0);
+      int start = 0;
+        int end = s.size() - 1;
+        int cnt = 0;
+        
+        while(start < end){
+            if(s[start] == s[end])
+            {
+				// if char matches increment start and decrement end
+                start++;
+                end--;
+            }
+            else
+            {
+				// keeping cnt of character that didn't match
+                cnt++;
+               start++;     //skip 1 from starting
+            }
+			// for optimising code if cnt is greater than 1 
+            // we will just break the loop as only one char can skipped/deleted.
+            if(cnt > 1)
+                break;
+        }
+        
+		// reinitialize pointer 
+        start = 0;
+        end = s.size() - 1;
+        int cnt1 = 0;
+        
+        while(start < end){
+            if(s[start] == s[end])
+            {
+				// if char matches increment start and decrement end
+                start++;
+                end--;  
+            }
+            else
+            {
+				// keeping cnt of character that didn't match
+                cnt1++;
+                end--;  //skip 1 from ending
+            }
+			// for optimising code if cnt is greater than 1 
+            // we will just break the loop as only one char can skipped/deleted.
+            if(cnt1 > 1)
+                break;
+               
+        }
+        
+        if(cnt == 1 || cnt1 == 1)   //del atmost one char
+            return true;
+        if(cnt == 0 || cnt1 == 0)    //palindrome
+            return true;
+        
+        return false;
+       
        
     }
     
-    bool validPalindrome(string &s, int lo, int hi, int count) {
-        if (count > 1) return false;
-        while (lo < hi) {
-            if (s[lo] == s[hi]) {
-                lo++; hi--;
-            }
-            else {
-                return validPalindrome(s, lo + 1, hi, count + 1) || 
-                        validPalindrome(s, lo, hi - 1, count + 1);
-            }
-        }
-        return true;
+//     bool validPalindrome(string &s, int lo, int hi, int count) {
+//         if (count > 1) return false;
+//         while (lo < hi) {
+//             if (s[lo] == s[hi]) {
+//                 lo++; hi--;
+//             }
+//             else {
+//                 return validPalindrome(s, lo + 1, hi, count + 1) || 
+//                         validPalindrome(s, lo, hi - 1, count + 1);
+//             }
+//         }
+//         return true;
         
-    }
+//     }
 };
