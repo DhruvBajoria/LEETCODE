@@ -1,11 +1,13 @@
 class Solution {
 public:
     int titleToNumber(string columnTitle) {
-     int i,count=0,sum=0;
-        for(i=columnTitle.length()-1;i>=0;i--){
-            sum+=(columnTitle[i]-64)*(int)pow(26,count);
+    int n=columnTitle.size();
+        int count=0,ans=0;
+        for(int i=n-1;i>=0;i--)
+        {
+            ans+=(columnTitle[i]-64)*pow(26,count);
             count++;
         }
-        return sum;
+        return ans;
     }
 };
