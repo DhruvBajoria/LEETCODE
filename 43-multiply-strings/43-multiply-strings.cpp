@@ -1,9 +1,9 @@
 class Solution {
 public:
     string multiply(string num1, string num2) {
-        int n=num1.size();
-        int m=num2.size();
+        int n=num1.length(),m=num2.length();
         vector<int>ans(n+m,0);
+        
         for(int i=n-1;i>=0;i--)
         {
             for(int j=m-1;j>=0;j--)
@@ -15,18 +15,15 @@ public:
                 
             }
         }
-        string res="";
-        for(int i=0;i<n+m;i++)
+   string res;
+        for(int i=0;i<ans.size();i++)
         {
             if(res.length()!=0||ans[i]!=0)
-            {
-                res+=ans[i]+'0';
-            }
+            res+=ans[i]+'0';
         }
-        if(res.length()==0)
+        if(res.size()==0)
             return "0";
         return res;
-
     }
 };
 
