@@ -1,20 +1,21 @@
 class Solution {
 public:
-    vector<int> plusOne(vector<int>& d) {
-        vector<int>v;
-        int n=d.size();
-        int a=d[n-1]+1;
-        int carry=a>9?1:0;
-        v.push_back(a%10);
-        for(int i=n-2;i>=0;i--)
+    vector<int> plusOne(vector<int>& nums) {
+      int n=nums.size();
+        int carry=1;
+        n--;
+        while(n>=0)
         {
-            int h=d[i]+carry;
-            v.push_back(h%10);
-            carry=h/10;
+            carry+=nums[n];
+            nums[n]=carry%10;
+            carry/=10;
+            n--;
         }
-        if(carry)
-            v.push_back(carry);
-        reverse(v.begin(),v.end());
-        return v;
+        while(carry)
+        {
+            nums.insert(nums.begin(),carry%10);
+            carry/=10;
+        }
+        return nums;
     }
 };
