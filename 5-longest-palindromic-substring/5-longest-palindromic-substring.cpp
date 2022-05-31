@@ -12,19 +12,21 @@ public:
                 {
                     ans=s.substr(l,r-l+1);
                 }
-                l--;r++;
+                l--;
+                r++;
             }
-            l=i,r=i+1;
-              while(l>=0&&r<n&&s[l]==s[r])
+             l=i,r=i+1;
+            while(l>=0&&r<n&&s[l]==s[r])
             {
                 if(ans.length()<r-l+1)
                 {
                     ans=s.substr(l,r-l+1);
                 }
-                l--;r++;
+                l--;
+                r++;
             }
-            
         }
-return ans;
+        return ans;
+
     }
 };
