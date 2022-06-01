@@ -1,33 +1,38 @@
 class Solution {
-private:
-    bool doable (const vector<int>& nums, int cuts, long long max) {
-        int acc = 0;
-        for(auto num : nums) {
-            // This step is unnecessary for this problem. I didn't discard this line because I want doable function more generalized.
-            if (num > max) return false;
-            else if (acc + num <= max) acc += num;
-            else {
-                --cuts;
-                acc = num;
-                if (cuts < 0) return false;
+public:
+    bool isvalid(vector<int>nums,int n,int m,int ma)
+    {
+        int sum=0;
+        int subarray=1;
+        for(int i=0;i<n;i++)
+        {
+            if(nums[i]>ma)
+                return false;
+            else if(sum+nums[i]<=ma)
+                sum+=nums[i];
+            else
+            {
+                subarray++;
+                sum=nums[i];
             }
         }
-        return true;
+        return (subarray<=m);
     }
-    
-public:
     int splitArray(vector<int>& nums, int m) {
-        long long left = 0, right = 0;
-        for(auto num : nums) {
-            left = max(left, (long long)num);
-            right += num;
+        int n=nums.size();
+        int l=0;
+        int r=(int)(1e9+1);
+        while(l<r)
+        {
+            int mid=l+(r-l)/2;
+            if(isvalid(nums,n,m,mid))
+            {
+                r=mid;
+            }
+            else{
+                l=mid+1;
+            }
         }
-        
-        while (left < right) {
-            long long mid = left + (right - left) / 2;
-            if (doable(nums, m - 1, mid)) right = mid;
-            else left = mid + 1;
-        }
-        return left;
+        return l;
     }
 };
