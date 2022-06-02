@@ -8,12 +8,14 @@ public:
     
     void push(int val) {
         s1.push(val);
-        if(s2.empty()||s2.top()>=val)
+        if(s2.empty()||val<=s2.top())
+        {
             s2.push(val);
+        }
     }
     
     void pop() {
-        if(s1.top()==s2.top())
+        if(s2.top()==s1.top())
             s2.pop();
         s1.pop();
     }
