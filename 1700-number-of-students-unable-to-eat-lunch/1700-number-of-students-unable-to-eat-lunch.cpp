@@ -1,16 +1,36 @@
 class Solution {
 public:
     int countStudents(vector<int>& students, vector<int>& sandwiches) {
-       int n = sandwiches.size();
-        vector<int> student_count(2, 0);
-        for (auto s : students) student_count[s]++;
-       
-        for (int i = 0; i < n; i++) {
-            student_count[sandwiches[i]]--;
-            if (student_count[sandwiches[i]] < 0) return n - i;
+        stack<int>st;
+        queue<int>q;
+        for(int i=0;i<students.size();i++)
+        {
+            q.push(students[i]);
         }
-        
-        return 0;
+     for(int i=sandwiches.size()-1;i>=0;i--)
+    {
+        st.push(sandwiches[i]);
+    }
+        int reject=0;
+        while(!q.empty())
+        {
+            if(st.top()==q.front())
+            {
+                reject=0;
+                st.pop();
+                q.pop();
+            }
+            else
+            {
+                reject++;
+                int a=q.front();
+                q.pop();
+                q.push(a);
+            }
+            if(reject==st.size())
+                return reject;
+        }
+   return 0;
 
     }
 };
