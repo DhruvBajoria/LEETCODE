@@ -9,21 +9,22 @@ class Solution{
 
     int smallestSubWithSum(int arr[], int n, int x)
     {
-       int overcount=INT_MAX;
-       for(int i=0;i<n;i++)
-       {
-           int j=i,count=0,sum=0;
-           while(sum<=x&&j<n)
-           {
-               sum+=arr[j++];
-               count++;
-           }
-           if(sum>x)
-           overcount=min(overcount,count);
+        int sum=0,mi=INT_MAX,j=0;
+        int i=0;
+       while(i<n)
+        {
+           sum+=arr[i];
+            while(sum>x)
+            {
+                mi=min(mi,i-j+1);
+                sum-=arr[j];
+                j++;
+            }
            
-       }
-       return overcount;
-        // Your code goes here   
+            i++;
+        }
+     
+        return mi;// Your code goes here   
     }
 };
 
