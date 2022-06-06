@@ -7,22 +7,23 @@ public:
         {
             pq.push(nums[i]);
         }
-        vector<int>ans;
-        ans.push_back(pq.top());
+        vector<int>v;
+        v.push_back(pq.top());
         for(int i=k;i<n;i++)
         {
             if(pq.top()==nums[i-k])
                 pq.pop();
             else
                 help.push(nums[i-k]);
-            while(!help.empty()&&help.top()==pq.top())
+            while(help.size()>0 && help.top()==pq.top())
             {
                 help.pop();
                 pq.pop();
             }
             pq.push(nums[i]);
-            ans.push_back(pq.top());
+            v.push_back(pq.top());
+                
         }
-        return ans;
+        return v;
     }
 };
