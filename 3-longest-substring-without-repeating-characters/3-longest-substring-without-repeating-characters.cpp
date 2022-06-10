@@ -6,7 +6,7 @@ public:
         for(int i=0;i<s.length();i++){
             
             if (index.find(s[i]) != index.end() && index[s[i]] >= start)
-                 start = index[s[i]] + 1;
+                 start = index[s[i]] +1;
             
             index[s[i]] = i;
             res=max(res,i-start+1);
