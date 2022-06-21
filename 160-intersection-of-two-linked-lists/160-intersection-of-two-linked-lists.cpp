@@ -8,25 +8,25 @@
  */
 class Solution {
 public:
-    int count(ListNode* head)
+    int count(ListNode*head)
     {
-        if(head==NULL)
-          return 0;
         int cnt=0;
-        ListNode*curr=head;
-        while(curr)
+        if(head==NULL)
+           return 0;
+        while(head)
         {
-            curr=curr->next;
             cnt++;
+            head=head->next;
         }
         return cnt;
-
     }
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
         int c1=count(headA);
         int c2=count(headB);
         int c=abs(c1-c2);
+        
         ListNode* curr1=headA,*curr2=headB;
+        
         if(c1>c2)
         {
             for(int i=0;i<c;i++)
@@ -34,7 +34,7 @@ public:
                 curr1=curr1->next;
             }
         }
-          if(c1<c2)
+         if(c1<c2)
         {
             for(int i=0;i<c;i++)
             {
