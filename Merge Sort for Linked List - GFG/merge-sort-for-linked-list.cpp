@@ -35,17 +35,20 @@ class Solution{
         return q;
         if(!q)
         return p;
+        Node*res;
         if(p->data<q->data)
         {
-            p->next=merge(p->next,q);
-            return p;
+            res=p;
+            res->next=merge(p->next,q);
+            
         }
         else
         {
-            q->next=merge(p,q->next);
-            return q;
+            res=q;
+            res->next=merge(p,q->next);
+           
         }
-        return NULL;
+        return res;
     }
     Node* mergeSort(Node* head) {
         if(head==NULL||head->next==NULL)
