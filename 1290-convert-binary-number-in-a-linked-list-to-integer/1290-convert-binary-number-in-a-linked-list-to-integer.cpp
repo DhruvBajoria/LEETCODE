@@ -10,8 +10,9 @@
  */
 class Solution {
 public:
-    int getDecimalValue(ListNode* head) {
-        ListNode* next=NULL,*prev=NULL,*curr=head;
+    ListNode* reverse(ListNode*head)
+    {
+        ListNode*prev=NULL,*next=NULL,*curr=head;
         while(curr)
         {
             next=curr->next;
@@ -19,17 +20,20 @@ public:
             prev=curr;
             curr=next;
         }
+        return prev;
+    }
+    int getDecimalValue(ListNode* head) {
+        head=reverse(head);
+        ListNode* help=head;
         int sum=0,n=0;
-        while(prev)
+        while(help)
         {
-            if(prev->val==1)
-            {
-                sum+=pow(2,n);
-            }
+            int a=help->val;
+            if(a==1)
+            sum+=pow(2,n);
             n++;
-            prev=prev->next;
+            help=help->next;
         }
         return sum;
-        
     }
 };
