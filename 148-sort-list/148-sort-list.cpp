@@ -10,30 +10,33 @@
  */
 class Solution {
 public:
-    ListNode*merge(ListNode* p,ListNode* q)
+    ListNode* merge(ListNode* p,ListNode* q)
     {
-        if(!p)return q;
-        if(!q)return p;
+        if(!p)
+            return q;
+        if(!q)
+            return p;
+        ListNode *res;
         if(p->val<q->val)
         {
-            p->next=merge(p->next,q);
-            return p;
+            res=p;
+            res->next=merge(p->next,q);
         }
         else
         {
-            q->next=merge(p,q->next);
-            return q;
+            res=q;
+            res->next=merge(p,q->next);
         }
-        return NULL;
+        return res;
     }
     ListNode* sortList(ListNode* head) {
         if(!head||!head->next)
             return head;
-        ListNode* slow=head,*fast=head;
-        while(fast&&fast->next&&fast->next->next)
+        ListNode*slow=head,*fast=head;
+        while(fast && fast->next && fast->next->next)
         {
-            fast=fast->next->next;
             slow=slow->next;
+            fast=fast->next->next;
             
         }
         
