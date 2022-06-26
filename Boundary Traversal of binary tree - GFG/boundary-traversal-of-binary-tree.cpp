@@ -105,59 +105,61 @@ struct Node
 
 class Solution {
 public:
-void lefttree(Node *root,vector<int> &ans)
+void leftt(Node*root,vector<int>&ans)
 {
     if(!root)
     return;
     if(root->left)
     {
         ans.push_back(root->data);
-        lefttree(root->left,ans);
+        leftt(root->left,ans);
     }
     else if(root->right)
     {
         ans.push_back(root->data);
-        lefttree(root->right,ans);
+        leftt(root->right,ans);
     }
+    
 }
-void leaf(Node *root,vector<int> &ans)
+
+void leaves(Node*root,vector<int>&ans)
 {
-   if(root == NULL) {
-           return;
-       }
-       if(root->left == NULL && root->right == NULL) {
-           ans.push_back(root->data);
-           return;
-       }
-       leaf(root->left, ans);
-       leaf(root->right, ans);
+    if(!root)
+    return ;
+    leaves(root->left,ans);
+    if(root->left==NULL&&root->right==NULL)
+    ans.push_back(root->data);
+    leaves(root->right,ans);
 }
-void righttree(Node *root,vector<int> &ans)
+void right(Node*root,vector<int>&ans)
 {
     if(!root)
     return;
     if(root->right)
     {
-         righttree(root->right,ans);
+        
+        right(root->right,ans);
         ans.push_back(root->data);
-       
     }
     else if(root->left)
     {
-         righttree(root->left,ans);
+        right(root->left,ans);
         ans.push_back(root->data);
         
     }
+    
 }
     vector <int> boundary(Node *root)
     {
-        vector<int> ans;
+        vector<int>ans;
         ans.push_back(root->data);
-        lefttree(root->left,ans);
-        leaf(root->left,ans);
-        leaf(root->right,ans);
-        righttree(root->right,ans);
+        leftt(root->left,ans);
+        leaves(root->left,ans);
+        leaves(root->right,ans);
+        right(root->right,ans);
         return ans;
+        
+        
         //Your code here
     }
 };
