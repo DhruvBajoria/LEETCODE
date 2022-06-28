@@ -97,19 +97,22 @@ class Solution
     public:
     bool isSumTree(Node* root)
     {
-             if(!root) return true;
-        if(!root->left && !root->right) return true;
-        if(isSumTree(root->left) && isSumTree(root->right)) {
-            int sum = 0;
-            sum += (root->left) ? root->left->data : 0;
-            sum += (root->right) ? root->right->data : 0;
-            if(sum == root->data) {
-                root->data += sum;
+        if(!root||(!root->left&&!root->right))
+        return true;
+        
+        if(isSumTree(root->left)&&isSumTree(root->right))
+        {
+            int sum=0;
+            sum+=root->left?root->left->data:0;
+            sum+=root->right?root->right->data:0;
+            if(sum==root->data)
+            {
+                root->data+=sum;
                 return true;
             }
+            
         }
-        return false;
-         // Your code here
+    return false;     // Your code here
     }
 };
 
