@@ -58,12 +58,17 @@ class Solution
                 if(i==c-1)
                 v.push_back(curr->data);
                 if(curr->left)
-                q.push(curr->left);
+                {
+                    q.push(curr->left);
+                }
                 if(curr->right)
-                q.push(curr->right);
+                {
+                    q.push(curr->right);
+                }
             }
         }
-       return v;// Your Code here
+        return v;
+       // Your Code here
     }
 };
 
