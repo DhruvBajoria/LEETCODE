@@ -110,27 +110,27 @@ class Solution
         if(!root)
         return v;
         queue<pair<Node*,int>>q;
-        map<int,int>mp;
         q.push({root,0});
+        map<int,int>mp;
         while(!q.empty())
         {
-            int c=q.size();
-            while(c--)
-            {
-                auto it=q.front();
-                q.pop();
-                Node* node=it.first;
-                int line=it.second;
-                if(mp.find(line)==mp.end())
-                mp[line]=node->data;
-                if(node->left)
-                q.push({node->left,line-1});
-                if(node->right)
-                q.push({node->right,line+1});
-            }
+             auto it=q.front();
+            q.pop();
+            Node* curr=it.first;
+            int line=it.second;
+            if(mp.find(line)==mp.end())
+            mp[line]=curr->data;
+            if(curr->left)
+            q.push({curr->left,line-1});
+            if(curr->right)
+            q.push({curr->right,line+1});
+            
+            
         }
         for(auto x:mp)
-        v.push_back(x.second);
+        {
+            v.push_back(x.second);
+        }
         return v;
         //Your code here
     }
