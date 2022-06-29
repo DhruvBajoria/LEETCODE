@@ -44,7 +44,7 @@ class Solution
         return root;
         if(!root->left&&!root->right)
         return NULL;
-        Node* left=NULL,*right=NULL;
+        Node*left=NULL,*right=NULL;
         if(root->left)
         left=lca(root->left,n1,n2);
         if(root->right)
@@ -52,7 +52,7 @@ class Solution
         
         if(left&&right)
         return root;
-        return left==NULL?right:left;
+        return left?left:right;
        //Your code here 
     }
 };
