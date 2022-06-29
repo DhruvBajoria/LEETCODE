@@ -93,23 +93,23 @@ class Solution {
     /*This function returns true if the tree contains 
     a duplicate subtree of size 2 or more else returns false*/
     unordered_map<string,int>mp;
-    string solve(Node* root){
+    string solve(Node* root)
+    {
         if(!root)
         return "$";
         string s="";
-        if(!root->left&&!root->right)
+        if(root->left==NULL&&root->right==NULL)
         {
             s+=to_string(root->data);
             return s;
         }
         
         s=s+to_string(root->data);
-        s=s+solve(root->left) ;
+        s=s+solve(root->left);
         s=s+solve(root->right);
         mp[s]++;
         return s;
     }
-    
     int dupSub(Node *root) {
         mp.clear();
         solve(root);
