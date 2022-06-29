@@ -99,7 +99,6 @@ class Solution
     {
         if(!root||(!root->left&&!root->right))
         return true;
-        
         if(isSumTree(root->left)&&isSumTree(root->right))
         {
             int sum=0;
@@ -110,9 +109,9 @@ class Solution
                 root->data+=sum;
                 return true;
             }
-            
         }
-    return false;     // Your code here
+        return false;
+         // Your code here
     }
 };
 
