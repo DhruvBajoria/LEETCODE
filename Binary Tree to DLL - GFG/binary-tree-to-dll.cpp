@@ -108,7 +108,7 @@ class Solution
 {
     public: 
     //Function to convert binary tree to doubly linked list and return it.
-    Node* prev=NULL,*head=NULL;
+    Node*prev=NULL,*head=NULL;
     Node * bToDLL(Node *root)
     {
         if(!root)
@@ -116,15 +116,17 @@ class Solution
         if(root->left)
         bToDLL(root->left);
         if(prev==NULL)
-        head=root;
+        {
+            head=root;
+        }
         else
         {
             root->left=prev;
             prev->right=root;
         }
         prev=root;
+        if(root->right)
         bToDLL(root->right);
-        
         return head;
         // your code here
     }
