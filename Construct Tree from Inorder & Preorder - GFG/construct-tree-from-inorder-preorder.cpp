@@ -41,30 +41,26 @@ struct Node
 */
 class Solution{
     public:
+    Node* tree(int pre[],int ps,int pe,int in[],int is,int ie,map<int,int>&mp)
+    {
+        if(ps>pe||is>ie)
+        return NULL;
+        Node* root=new Node(pre[ps]);
+        int ir=mp[root->data];
+        int nleft=ir-is;
+        
+        root->left=tree(pre,ps+1,ps+nleft,in,is,ir-1,mp);
+        root->right=tree(pre,ps+nleft+1,pe,in,ir+1,ie,mp);
+        return root;
+    }
     Node* buildTree(int in[],int pre[], int n)
     {
         map<int,int>mp;
         for(int i=0;i<n;i++)
-        {
-            mp[in[i]]=i;
-        }
-        
+        mp[in[i]]=i;
         Node* root=tree(pre,0,n-1,in,0,n-1,mp);
         return root;
         // Code here
-    }
-    
-    Node* tree(int pre[],int prestart,int preend,int in[],int instart,int inend,map<int,int>&mp)
-    {
-        if(prestart>preend||instart>inend)
-        {return NULL;}
-        Node* root=new Node(pre[prestart]);
-        int inroot=mp[root->data];
-        int numsleft=inroot-instart;
-        
-        root->left=tree(pre,prestart+1,prestart+numsleft+1,in,instart,inroot-1,mp);
-        root->right=tree(pre,prestart+numsleft+1,preend,in,inroot+1,inend,mp);
-        return root;
     }
 };
 
