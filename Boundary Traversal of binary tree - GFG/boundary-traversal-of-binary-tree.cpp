@@ -105,36 +105,38 @@ struct Node
 
 class Solution {
 public:
-void leftt(Node*root,vector<int>&ans)
+void left(Node*root,vector<int>&ans)
 {
     if(!root)
-    return;
+    return ;
     if(root->left)
     {
         ans.push_back(root->data);
-        leftt(root->left,ans);
+        left(root->left,ans);
+        
     }
     else if(root->right)
     {
         ans.push_back(root->data);
-        leftt(root->right,ans);
+        left(root->right,ans);
     }
-    
 }
-
 void leaves(Node*root,vector<int>&ans)
 {
     if(!root)
     return ;
+   
     leaves(root->left,ans);
-    if(root->left==NULL&&root->right==NULL)
+    if(!root->left&&!root->right)
     ans.push_back(root->data);
+   
     leaves(root->right,ans);
 }
+
 void right(Node*root,vector<int>&ans)
 {
     if(!root)
-    return;
+    return ;
     if(root->right)
     {
         
@@ -143,23 +145,20 @@ void right(Node*root,vector<int>&ans)
     }
     else if(root->left)
     {
+        
         right(root->left,ans);
         ans.push_back(root->data);
-        
     }
-    
 }
     vector <int> boundary(Node *root)
     {
         vector<int>ans;
+        
         ans.push_back(root->data);
-        leftt(root->left,ans);
+        left(root->left,ans);
         leaves(root->left,ans);
         leaves(root->right,ans);
-        right(root->right,ans);
-        return ans;
-        
-        
+        right(root->right,ans);return ans;
         //Your code here
     }
 };
