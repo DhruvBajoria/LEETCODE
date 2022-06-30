@@ -9,16 +9,25 @@ class Solution
     int minOperation(int n)
     {
         int cnt=0;
-        while(n>0)
+        while(n!=0)
         {
-            if(n%2)
-            n-=1,cnt++;
-            else
-            cnt++,n/=2;
-          
-            
+              if(n%2==0)
+        {
+            while(n%2==0)
+            {
+                cnt++;
+                n/=2;
+            }
         }
-         return cnt; //code here.
+        else
+        {
+            cnt++;
+            n-=1;
+        }
+        }
+      
+        return cnt;
+        //code here.
     }
 };
 
