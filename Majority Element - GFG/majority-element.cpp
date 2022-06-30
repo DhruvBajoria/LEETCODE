@@ -13,24 +13,35 @@ class Solution{
      // Function to find majority element in the array
     // a: input array
     // size: size of input array
-    int majorityElement(int a[], int size)
+    int majorityElement(int arr[], int n)
     {
-         int val=size/2;
-    map<int,int>m;
-    for(int i=0;i<size;i++)
-    {
-        m[a[i]]++;
-        
-    }
-        for(auto x:m)
+     int cnt=1;
+     int ans=arr[0];
+     for(int i=1;i<n;i++)
+     {
+         if(ans==arr[i])
+         {
+             cnt++;
+         }
+         else
+         {
+             cnt--;
+             if(cnt==0)
+             {
+                 ans=arr[i];
+                 cnt=1;
+             }
+         }
+     }
+        int freq=0;
+        for(int i=0;i<n;i++)
         {
-            if(x.second>val)
-            return x.first;
+            if(ans==arr[i])
+            freq++;
+            if(freq>n/2)
+            return ans;
         }
-        // your code here
-        return -1;
-        
-        // your code here
+      return -1;  // your code here
         
     }
 };
