@@ -11,32 +11,28 @@
  */
 class Solution {
 public:
-   static int mi(TreeNode* root)
-    {
-        int minval=root->val;
-        while(root->left)
-        {
-            minval=root->val;
-                root=root->left;
-        }
-        return minval;
-    }
     TreeNode* deleteNode(TreeNode* root, int key) {
-if(root) 
-            if(key < root->val) root->left = deleteNode(root->left, key);     //We frecursively call the function until we find the target node
-            else if(key > root->val) root->right = deleteNode(root->right, key);
+        if(root)
+        if(root->val>key)
+            root->left=deleteNode(root->left,key);
+        else if(root->val<key)
+            root->right=deleteNode(root->right,key);
         else
         {
-    if(!root->left && !root->right) return NULL;          //No child condition
-                if (!root->left || !root->right)
-                    return root->left ? root->left : root->right; 
-           TreeNode* temp = root->right;                        //(or) TreeNode *temp = root->right;
-                while(temp->left != NULL) temp = temp->left;     //      while(temp->left != NULL) temp = temp->left;
-                root->val = temp->val;                            //       root->val = temp->val;
-                root->right = deleteNode(root->right, temp->val); 
+            if(!root->left&&!root->right)
+                return NULL;
+           else if(!root->left||!root->right)
+                return root->left?root->left:root->right;
+            else
+            {
+                TreeNode* temp=root->right;
+                while(temp->left)
+                    temp=temp->left;
+                root->val=temp->val;
+                root->right=deleteNode(root->right,temp->val);
+            }
             
         }
         return root;
-            
     }
 };
