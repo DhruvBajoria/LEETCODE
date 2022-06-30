@@ -118,12 +118,11 @@ class Solution{
             inc+=getMaxSum(root->left->right);
             inc+=getMaxSum(root->left->left);
         }
-         if(root->right)
+        if(root->right)
         {
             inc+=getMaxSum(root->right->right);
             inc+=getMaxSum(root->right->left);
         }
-        
         
         int exc=getMaxSum(root->left)+getMaxSum(root->right);
         dp[root]=max(inc,exc);
