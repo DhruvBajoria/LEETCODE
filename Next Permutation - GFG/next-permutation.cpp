@@ -10,31 +10,9 @@ using namespace std;
 class Solution{
 public:
     vector<int> nextPermutation(int N, vector<int> arr){
-      int b=-1;
-      for(int i=N-1;i>0;i--)
-      {
-          if(arr[i]>arr[i-1])
-          {
-              b=i-1;
-              break;
-          }
-      }
-      if(b<0)
-      {
-          reverse(arr.begin(),arr.end());
-          return arr;
-      }
       
-          for(int i=N-1;i>=0;i--)
-          {
-              if(arr[i]>arr[b])
-              {
-                  swap(arr[i],arr[b]);
-                  reverse(arr.begin()+b+1,arr.end());
-                  break;
-              }
-          }
       
+        next_permutation(arr.begin(),arr.end());
         return arr;
         
         // code here
