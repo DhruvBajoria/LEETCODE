@@ -126,23 +126,36 @@ struct Node
 class Solution
 {
 public:
-
-   void solve(Node*root,Node*&temp){
-   if(root==NULL)return;
-   solve(root->left,temp);
-   if(temp!=NULL){
-       temp->next=root;
-   }
-   temp=root;
-   solve(root->right,temp);
-}
-   void populateNext(Node *root)
+ Node*prev=NULL,*head=NULL;
+Node* inorder(Node *root)
+{
+    if(!root)
+    return NULL;
+    if(root->left)
+    inorder(root->left);
+   if(!prev)
    {
-       //code here
-       Node*temp=NULL;
-       solve(root,temp);
-       
+       head=root;
    }
+   else
+   {
+       prev->next=root;
+   }
+   prev=root;
+   if(root->right)
+    inorder(root->right);
+    return head;
+}
+
+    void populateNext(Node *root)
+    {
+        if(!root)
+        return;
+        vector<int>v;
+        root=inorder(root);
+        
+        //code here
+    }
 };
 
 // { Driver Code Starts.
