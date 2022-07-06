@@ -42,33 +42,44 @@ struct Node
 class Solution{
 public:
     Node* divide(int N, Node *head){
-        vector<int>o,e;
-        Node *temp=head;
-        while(temp)
+        Node*ostart=NULL,*estart=NULL,*ot=NULL,*et=NULL,*curr=head;
+        while(curr)
         {
-            if(temp->data%2==0)
+            if(curr->data%2)
             {
-                e.push_back(temp->data);
-                
+                if(ostart==NULL)
+                {
+                    ostart=curr;
+                    ot=ostart;
+                }
+                else
+                {
+                    ot->next=curr;
+                    ot=curr;
+                }
             }
             else
             {
-                o.push_back(temp->data);
+                 if(estart==NULL)
+                {
+                    estart=curr;
+                    et=estart;
+                }
+                else
+                {
+                    et->next=curr;
+                    et=curr;
+                }
             }
-            temp=temp->next;
+            curr=curr->next;
         }
-        temp=head;
-        for(int i=0;i<e.size();i++)
-        {
-            temp->data=e[i];
-            temp=temp->next;
-        }
-        for(int i=0;i<o.size();i++)
-        {
-            temp->data=o[i];
-            temp=temp->next;
-        }
-       return head; // code here
+        if(et==NULL)
+        return ostart;
+        et->next=ostart;
+        if(ot!=NULL)
+        ot->next=NULL;
+        return estart;
+        // code here
     }
 };
 
