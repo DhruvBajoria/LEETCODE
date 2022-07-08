@@ -17,7 +17,7 @@ public:
         int n1=X.size(),n2=Y.size();
         int i=n1-1,j=n2-1;
 
-        while(i>=0&&j>=0)
+        while(i>=0||j>=0)
         {
             if(X[i]>Y[j])
             {
@@ -36,16 +36,16 @@ public:
             
             
         }
-        while(i>=0)
-        {
-            ans+=v*X[i];
-            i--;
-        }
-        while(j>=0)
-        {
-            ans+=h*Y[j];
-            j--;
-        }
+        // while(i>=0)
+        // {
+        //     ans+=v*X[i];
+        //     i--;
+        // }
+        // while(j>=0)
+        // {
+        //     ans+=h*Y[j];
+        //     j--;
+        // }
         return ans;
         //Write your code here
     }
