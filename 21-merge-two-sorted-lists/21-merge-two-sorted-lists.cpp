@@ -11,12 +11,12 @@
 class Solution {
 public:
     ListNode* mergeTwoLists(ListNode* p, ListNode* q) {
-        ListNode* res;
+        ListNode* res=NULL;
         if(!p)
             return q;
-        if(!q)
+        else if(!q)
             return p;
-        if(p->val<q->val)
+        else if(p->val<q->val)
         {
             res=p;
             res->next=mergeTwoLists(p->next,q);
@@ -27,5 +27,7 @@ public:
             res->next=mergeTwoLists(p,q->next);
         }
         return res;
+        
+        
     }
 };
