@@ -61,9 +61,9 @@ class Solution
 {
     public:
     //Function to add two numbers represented by linked list.
-    Node *reverse(Node*head)
+    Node*reverse(Node*head)
     {
-        Node* curr=head,*prev=NULL,*next=NULL;
+        Node*curr=head,*next=NULL,*prev=NULL;
         while(curr)
         {
             next=curr->next;
@@ -77,34 +77,31 @@ class Solution
     {
         first=reverse(first);
         second=reverse(second);
-        int c=0,sum=0;
-        Node *dummy=new Node(-1);
-        Node *temp=dummy;
+        int c=0,s=0;
+        Node* dummy=new Node(-1);
+        Node* temp=dummy;
         while(first||second||c)
         {
             if(first)
             {
-                sum+=first->data;
+                s+=first->data;
                 first=first->next;
-                
             }
-             if(second)
+            if(second)
             {
-                sum+=second->data;
+                s+=second->data;
                 second=second->next;
                 
             }
-            sum+=c;
-            c=sum/10;
-            sum=sum%10;
-            Node *help=new Node(sum);
-            sum=0;
+            s+=c;
+            c=s/10;
+            s=s%10;
+            Node* help=new Node(s);
             temp->next=help;
             temp=temp->next;
+            s=0;
         }
-        
         return reverse(dummy->next);
-      
         // code here
     }
 };
