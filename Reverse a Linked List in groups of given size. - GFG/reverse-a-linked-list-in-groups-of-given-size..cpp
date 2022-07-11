@@ -51,7 +51,7 @@ class Solution
     public:
     struct node *reverse (struct node *head, int k)
     { 
-        struct node *prev=NULL,*curr=head,*next=NULL;
+        node*curr=head,*next=NULL,*prev=NULL;
         int c=0;
         while(curr!=NULL&&c<k)
         {
@@ -61,7 +61,6 @@ class Solution
             curr=next;
             c++;
         }
-        
         if(next!=NULL)
         {
             head->next=reverse(next,k);
