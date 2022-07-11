@@ -34,13 +34,14 @@ class Solution{
     //Function to check whether the list is palindrome.
     bool isPalindrome(Node *head)
     {
-        Node *slow=head,*fast=head;
-        while(fast!=NULL&&fast->next!=NULL)
+        Node* slow=head,*fast=head->next;
+        while(fast&&fast->next)
         {
-            fast=fast->next->next;
             slow=slow->next;
+            fast=fast->next->next;
         }
-        Node*prev=NULL,*next=NULL,*curr=slow;
+        Node*curr=slow->next;
+        Node* next=NULL,*prev=NULL;
         while(curr)
         {
             next=curr->next;
@@ -56,7 +57,8 @@ class Solution{
             fast=fast->next;
             prev=prev->next;
         }
-       return true; //Your code here
+        return true;
+        //Your code here
     }
 };
 
