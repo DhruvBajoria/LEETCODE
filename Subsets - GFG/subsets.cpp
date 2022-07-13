@@ -14,17 +14,30 @@ class Solution
     vector<vector<int>>ans;
     void solve(vector<int>&A,int n,int i,vector<int>&help)
     {
-        if(i==n)
-        {
-            //if(help.size()>0)
-            ans.push_back(help);
-            return ;
-        }
+        // if(i==n)
+        // {
+        //     //if(help.size()>0)
+        //     ans.push_back(help);
+        //     return ;
+        // }
        
-        help.push_back(A[i]);//pick
-        solve(A,n,i+1,help);
-        help.pop_back();//non pick
-        solve(A,n,i+1,help);
+        // help.push_back(A[i]);//pick
+        // solve(A,n,i+1,help);
+        // help.pop_back();//non pick
+        // solve(A,n,i+1,help);
+        ans.push_back(help);
+        if(i == n) return;
+        for(int j = i; j < n; j++){
+            // int x = A[i];
+            // A[i] = A[j];
+            // A[j] = x;
+            help.push_back(A[j]);
+            solve(A,n,j+1,help);
+            help.pop_back();
+            // A[j] = A[i];
+            // A[i] = x;
+        
+        }
         
         
     }
