@@ -12,33 +12,41 @@ class Solution {
   public:
     //Function to return a list of indexes denoting the required 
     //combinations whose sum is equal to given number.
-    void solve(vector<int>&a,int t,int i,vector<int>&h,vector<vector<int>>&v)
+    vector<vector<int>>ans;
+    void solve(vector<int>&a,int i,int sum,int n,int t,vector<int>&h)
     {
-        if(i==a.size())
-        {
-            if(t==0)
-            {
-                v.push_back(h);
-            }
-            return ;
-        }
         
-        if(a[i]<=t)
+        if(sum==t)
         {
-            h.push_back(a[i]);
-            solve(a,t-a[i],i,h,v);
+            ans.push_back(h);
+            return;
+        }
+        if(sum>t)
+        return;
+        
+        for(int j=i;j<n;j++)
+        {
+            if(j>i&&a[j]==a[j-1])
+            continue;
+            sum+=a[j];
+            h.push_back(a[j]);
+            solve(a,j,sum,n,t,h);
+            sum-=a[j];
             h.pop_back();
         }
-         solve(a,t,i+1,h,v);
+        
+        
+        
+        
     }
     vector<vector<int> > combinationSum(vector<int> &A, int B) {
-        vector<vector<int>>v;
         vector<int>h;
+        int n=A.size();
         sort(A.begin(),A.end());
-        A.erase(unique(A.begin(), A.end()), A.end());
-        solve(A,B,0,h,v);
-        
-        return v;
+        solve(A,0,0,n,B,h);
+        sort(ans.begin(),ans.end());
+        ans.erase(unique(ans.begin(),ans.end()),ans.end());
+        return ans;
         // Your code here
     }
 };
