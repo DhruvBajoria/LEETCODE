@@ -1,40 +1,26 @@
 class Solution {
-public:
-    void solve(vector<int>&nums,int i,int k,vector<int>&h,vector<vector<int>>&v)
+public:vector<vector<int>>ans;
+    void solve(vector<int>&c,int i,int n,int k,vector<int>&h)
     {
         if(h.size()==k)
-            v.push_back(h);
-        for(int j=i;j<nums.size();j++)
         {
-            if(j>i&&nums[j]==nums[j-1])
-                continue;
-            h.push_back(nums[j]);
-            solve(nums,j+1,k,h,v);
+            ans.push_back(h);
+        }
+        for(int j=i;j<n;j++)
+        {
+            h.push_back(c[j]);
+            solve(c,j+1,n,k,h);
             h.pop_back();
         }
-        return;
-        
-//         if(i==nums.size())
-//         {
-//             if(h.size()==k)
-//                 v.push_back(h);
-//             return;
-//         }
-        
-//         h.push_back(nums[i]);
-//         solve(nums,i+1,k,h,v);
-//         h.pop_back();
-//         solve(nums,i+1,k,h,v);
     }
     vector<vector<int>> combine(int n, int k) {
-        vector<int>nums;
+        vector<int>c;
         for(int i=1;i<=n;i++)
         {
-            nums.push_back(i);
+            c.push_back(i);
         }
         vector<int>h;
-        vector<vector<int>>v;
-        solve(nums,0,k,h,v);
-        return v;
+        solve(c,0,n,k,h);
+        return ans;
     }
 };
