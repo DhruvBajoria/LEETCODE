@@ -17,11 +17,11 @@ public:
         {
             // if(j>i&&c[j]==c[j-1])
             //     continue;
-            // sum+=c[j];
+            sum+=c[j];
             h.push_back(c[j]);
-            solve(c,j+1,n,sum+c[j],k,h);
+            solve(c,j+1,n,sum,k,h);
             h.pop_back();
-            // sum-=c[j];
+            sum-=c[j];
         }
     }
     vector<vector<int>> combinationSum3(int k, int n) {
