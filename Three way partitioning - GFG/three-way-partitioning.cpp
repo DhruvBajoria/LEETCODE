@@ -14,7 +14,32 @@ public:
     //that array is divided into three parts.
     void threeWayPartition(vector<int>& arr,int a, int b)
     {
-        sort(arr.begin(),arr.end());
+        vector<int>p,q,r;
+        for(int i=0;i<arr.size();i++)
+        {
+            if(arr[i]<a)
+            p.push_back(arr[i]);
+            else if(arr[i]>=a&&arr[i]<=b)
+            q.push_back(arr[i]);
+            else
+            r.push_back(arr[i]);
+            
+        }
+        
+        vector<int>ans;
+        for(auto x:p)
+        {
+            ans.push_back(x);
+        }
+        for(auto x:q)
+        {
+            ans.push_back(x);
+        }
+        for(auto x:r)
+        {
+            ans.push_back(x);
+        }
+        arr=ans;
         // code here 
     }
 };
