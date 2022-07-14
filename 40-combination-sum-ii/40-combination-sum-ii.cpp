@@ -1,37 +1,30 @@
 class Solution {
 public:
-void solve(vector<int>&c,int t,int i,int n,vector<vector<int>>&ans,vector<int>&v)
+    vector<vector<int>>ans;
+    void solve(vector<int>&c,int t,int i,int sum,vector<int>&h,int n)
     {
-        if(t==0)
+        if(sum==t)
         {
-            ans.push_back(v);
-            return;
+            ans.push_back(h);
+            return ;
         }
-        
+        if(sum>t)return;
         for(int j=i;j<n;j++)
         {
             if(j>i&&c[j]==c[j-1])
                 continue;
-          if(c[i]<=t)
-          {
-                v.push_back(c[j]);
-            solve(c,t-c[j],j+1,n,ans,v);
-            v.pop_back();
-          }
+            sum+=c[j];
+            h.push_back(c[j]);
+            solve(c,t,j+1,sum,h,n);
+            h.pop_back();
+            sum-=c[j];
         }
-     
     }
     vector<vector<int>> combinationSum2(vector<int>& c, int t) {
-          vector<vector<int>>ans;
         int n=c.size();
-        vector<int>v;
+        vector<int>h;
         sort(c.begin(),c.end());
-        solve(c,t,0,n,ans,v);
-        vector<vector<int>>a;
-        // for(auto x:ans)
-        // {
-        //     a.push_back(x);
-        // }
+        solve(c,t,0,0,h,n);
         return ans;
     }
 };
