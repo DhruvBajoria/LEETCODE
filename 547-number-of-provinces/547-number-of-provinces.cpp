@@ -1,37 +1,46 @@
 class Solution {
 public:
-void DFS(vector<vector<int>>& graph, vector<bool> &visited,int v)
-{
-    visited[v] = true; //marking visited;
-    
-    //now check for its neighbors
-    for(int i=0;i<graph[v].size();i++)
+    void dfs(vector<vector<int>>&g,int s,vector<bool>&vis)
     {
-        if(i == v)
-            continue;
-        
-        if(graph[v][i] && !visited[i])
-            DFS(graph,visited,i);
-    }
-    
-}
-
-int findCircleNum(vector<vector<int>>& graph) 
-{
-    int n = graph.size();
-    
-    vector<bool>visited(n,false);
-    
-    int ans = 0;
-    for(int i=0;i<n;i++)
-    {
-        if(!visited[i])
+        if(vis[s]==true)
+            return;
+        vis[s]=true;
+        for(int i=0;i<g[s].size();i++)
         {
-            DFS(graph,visited,i);
-            ans++;
+            if(i==s)
+                continue;
+            if(g[s][i] && !vis[i])
+            dfs(g,i,vis);
         }
+        return;
     }
-    return ans;
-}
-    
+    int findCircleNum(vector<vector<int>>& c) {
+        int n=c.size();
+        cout<<n<<endl;
+        // vector<vector<int>>g(n,vector<int>());
+        // for(int i=0;i<n;i++)
+        // {
+        //     for(int j=0;j<n;i++)
+        //     {
+        //         if(c[i][j]==1)
+        //         {
+        //             g[i].push_back(j);
+        //         }
+        //     }
+        // }
+        int cnt=0;
+        vector<bool>vis(n,false);
+        for(int i=0;i<n;i++)
+        {
+            if(!vis[i])
+            {
+                dfs(c,i,vis);
+                cnt++;
+            }
+        }
+        
+        return cnt;
+        
+        
+    }
 };
