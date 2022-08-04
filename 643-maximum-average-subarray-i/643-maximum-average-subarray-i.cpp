@@ -1,25 +1,22 @@
-#include<bits/stdc++.h>
 class Solution {
 public:
     double findMaxAverage(vector<int>& nums, int k) {
-        double sum=0;
-        int i=0,j=0,res=INT_MIN;
-        int n=nums.size();
-        while(j<n)
+        int sum=0,ma=INT_MIN;
+        for(int i=0;i<k;i++)
         {
-            sum+=nums[j];
-            if(j-i+1<k)
-                j++;
-            else if(j-i+1==k)
-            {
-                if(sum>res)
-                    res=sum;
-                sum-=nums[i];
-                i++;
-                j++;
-            }
-            
+            sum+=nums[i];
         }
-        return (double)res/k;
+         ma=max(ma,sum);
+       // cout<<ma<<endl;
+        for(int i=k;i<nums.size();i++)
+        {
+            sum+=(nums[i]-nums[i-k]);
+            ma=max(ma,sum);
+            //cout<<ma<<endl;
+        }
+        
+        return (double)ma/k;
+        
+        
     }
 };
