@@ -1,8 +1,9 @@
 class Solution {
 public:
     int longestConsecutive(vector<int>& nums) {
-        sort(nums.begin(),nums.end());
         set<int>s;
+        if(nums.size()==0)
+            return 0;
         for(auto x:nums)
         {
             s.insert(x);
@@ -14,11 +15,10 @@ public:
         }
         if(nums.size()==1)
             return 1;
-        vector<int>v;
         int cnt=1,ma=0;
-        for(int i=1;i<nums.size();i++)
+        for(int i=0;i<nums.size()-1;i++)
         {
-            if(nums[i]-1==nums[i-1])
+            if(nums[i]+1==nums[i+1])
             {
                 cnt++;
             }
@@ -29,5 +29,6 @@ public:
             ma=max(ma,cnt);
         }
         return ma;
+        
     }
 };
