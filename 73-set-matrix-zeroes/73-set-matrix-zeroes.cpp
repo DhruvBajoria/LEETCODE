@@ -1,14 +1,14 @@
 class Solution {
 public:
-    void setZeroes(vector<vector<int>>& mat) {
-        int n=mat.size();
-        int m=mat[0].size();
+    void setZeroes(vector<vector<int>>& matrix) {
+        int n=matrix.size();
+        int m=matrix[0].size();
         vector<int>r,c;
         for(int i=0;i<n;i++)
         {
             for(int j=0;j<m;j++)
             {
-                if(mat[i][j]==0)
+                if(matrix[i][j]==0)
                 {
                     r.push_back(i);
                     c.push_back(j);
@@ -20,15 +20,18 @@ public:
         {
             for(int j=0;j<m;j++)
             {
-                mat[r[i]][j]=0;
+                matrix[r[i]][j]=0;
             }
         }
-         for(int i=0;i<c.size();i++)
+        for(int j=0;j<c.size();j++)
         {
-            for(int j=0;j<n;j++)
+            for(int i=0;i<n;i++)
             {
-                mat[j][c[i]]=0;
+                matrix[i][c[j]]=0;
             }
         }
+ 
+        
+        
     }
 };
